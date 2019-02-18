@@ -20,5 +20,19 @@ router.post("/Message", (req, res) => {
             res.status(500).json(err);
         })
 });
+//GET
+router.get("/Messages", (req, res) => {
+
+    MessagesModel.find()
+        .then(doc => {
+            if (!doc || doc.length === 0) {
+                return res.status(500).send(doc);
+            }
+            res.status(200).json(doc);
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        })
+});
 
 module.exports = router;
